@@ -6,34 +6,33 @@
 
 package sriracha.ltlgenerator.scope;
 
-import java.util.ArrayList;
-
 /**
  * 
  * @author Luis Garnica <lagarnicachavira at miners.utep.edu>
  */
 public class Scope {
     
-   public final String[] propositions;
-   int n; //Number of propositions used
+    public String betweenLANDR = "G(([L]&l![R])->([L]&l[P])";
+    public String L;
+    public String R;
+    public String P;
+    public String Q;
 
-    public Scope(int n) {
+    public Scope(String L, String R, String P, String Q) {
+        this.L = L;
+        this.R = R;
+        this.P = P;
+        this.Q = Q;
+    }
+
+    public String getFormulaBetweenLANDR(){
+       
+       betweenLANDR = betweenLANDR.replace("[L]", this.L).replace("[R]", this.R).replace("[P]", this.P); 
+
+       //process the super ands
         
-        this.n = n;
-        propositions = new String[3];
-	        
-	this.propositions[0] = "-";
-	this.propositions[1] = "-";
-	this.propositions[2] = "-";
+        return  betweenLANDR;
     }
     
     
-    public ArrayList<String> getPropositions() {
-        ArrayList<String> props = new ArrayList<String>();
-        for (int i = 0; i < this.n; i++){
-            props.add(propositions[i]);
-        }
-        return props;
-    }
-
 }

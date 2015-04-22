@@ -6,32 +6,33 @@
 
 package sriracha.ltlgenerator.pattern;
 
-import sriracha.ltlgenerator.scope.Scope;
-
 /**
  * 
  * @author Luis Garnica <lagarnicachavira at miners.utep.edu>
  */
 public class Pattern {
-    
-    Scope s;
-    
-    public String OnePropFormula = "";
-    public String TwoPropFormula = "";
-    public String ThreePropFormula = "";
 
-    public Pattern(Scope s) {
-        this.s = s;
-    }
+    public String reponse_beforeRc = "!((![R])U(([P]&r![R])&l((!([Q]&r![R]))U[R])))";
+    public String L;
+    public String R;
+    public String P;
+    public String Q;
 
-    public String getCPFormula(){
-        if (s.getPropositions().size() == 1)
-            return OnePropFormula.replace("[p1]", s.getPropositions().get(0));
-        else if (s.getPropositions().size() == 2)
-            return TwoPropFormula.replace("[p1]",s.getPropositions().get(0)).replace("[p2]", s.getPropositions().get(1));
-        else if (s.getPropositions().size() == 3)
-            return ThreePropFormula.replace("[p1]",s.getPropositions().get(0)).replace("[p2]", s.getPropositions().get(1)).replace("[p3]", s.getPropositions().get(2));
-        return "Error";
+    public Pattern(String L, String R, String P, String Q) {
+        this.L = L;
+        this.R = R;
+        this.P = P;
+        this.Q = Q;
     }
-   
+    
+    public String getResponseBeforeRc(){  
+    
+    reponse_beforeRc = reponse_beforeRc.replace("[R]", this.R).replace("[P]", this.P).replace("[Q]", this.Q);
+    
+    //weird ands processing here
+    
+        
+    return reponse_beforeRc;    
+    }
+    
 }
